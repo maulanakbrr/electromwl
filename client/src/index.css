@@ -1,0 +1,7 @@
+main{
+  min-height: 75vh;
+}
+
+.rating span {
+  margin: .1rem;
+}
