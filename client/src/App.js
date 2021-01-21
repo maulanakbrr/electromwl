@@ -4,7 +4,6 @@ import Footer from './components/Footer/Footer'
 import HomePage from './pages/HomePage/HomePage'
 import ProductPage from './pages/ProductPage/ProductPage'
 
-import './bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
 function App() {
