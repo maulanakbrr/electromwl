@@ -1,4 +1,4 @@
-import ProductActionTypes from './productTypes'
+import ProductsActionTypes from './productsTypes'
 
 const INITIAL_STATE = {
   products: [],
@@ -6,20 +6,20 @@ const INITIAL_STATE = {
   errorMessage: undefined
 }
 
-const productReducer = (state= INITIAL_STATE, action) => {
+const productsReducer = (state= INITIAL_STATE, action) => {
   switch (action.type){
-    case ProductActionTypes.FETCH_PRODUCTS_START:
+    case ProductsActionTypes.FETCH_PRODUCTS_START:
       return {
         ...state,
         isFetching: true
       }
-    case ProductActionTypes.FETCH_PRODUCTS_SUCCESS:
+    case ProductsActionTypes.FETCH_PRODUCTS_SUCCESS:
       return {
         ...state,
         products: action.payload,
         isFetching: false
       }
-    case ProductActionTypes.FETCH_PRODUCTS_FAILURE:
+    case ProductsActionTypes.FETCH_PRODUCTS_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -30,4 +30,4 @@ const productReducer = (state= INITIAL_STATE, action) => {
   }
 }
 
-export default productReducer
+export default productsReducer

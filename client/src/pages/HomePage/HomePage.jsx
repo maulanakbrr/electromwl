@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchProductsStartAsync } from '../../redux/product/productActions'
+import { fetchProductsStartAsync2 } from '../../redux/products/productsActions'
 
-import Product from '../../components/Product/Product'
+import ProductItem from '../../components/ProductItem/ProductItem'
+import Loader from '../../components/Loader/Loader'
+import Message from '../../components/Message/Message'
 
 const HomePage = () => {
   
@@ -15,22 +17,22 @@ const HomePage = () => {
   const { products, isFetching, errorMessage } = productsList
 
   useEffect(() => {
-    dispatch(fetchProductsStartAsync())
+    dispatch(fetchProductsStartAsync2())
   }, [dispatch])
   
   return (
     <>
-      <h1>Latest Products</h1>
+      <h1 className='text-center'>Latest Products</h1>
       {
         isFetching ? 
-          <h2>Loading...</h2> : 
+          <Loader/> : 
           errorMessage ? 
-            <h3>{errorMessage}</h3> :
+            <Message variant='danger'>{errorMessage}</Message> :
             <Row>
               {
                 products.map(product => (
                   <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product product={product} />
+                    <ProductItem product={product} />
                   </Col>
                 ))
               }
