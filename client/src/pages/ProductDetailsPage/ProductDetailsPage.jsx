@@ -12,7 +12,7 @@ import Message from '../../components/Message/Message'
 import { BreadcrumbCustom } from './ProductDetailsPage.styles'
 
 const ProductDetailsPage = ({ history, match }) => {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   
   const dispatch = useDispatch()
 
