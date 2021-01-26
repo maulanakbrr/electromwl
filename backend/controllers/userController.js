@@ -3,6 +3,8 @@ import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
 
 // auth user and get token - public
+// if user exists and user password matches with entered password
+// then send json
 export const authUser = asyncHandler( async(req, res) => {
   const { email, password } = req.body
   
@@ -23,6 +25,9 @@ export const authUser = asyncHandler( async(req, res) => {
 })
 
 // register a new user - public
+// check if user exists
+// if its true, send status 400 and error
+// create user then send status 201 and json data
 export const registerUser = asyncHandler( async(req, res) => {
   const { name, email, password } = req.body
   
@@ -54,6 +59,7 @@ export const registerUser = asyncHandler( async(req, res) => {
 })
 
 // get user profile - private
+// find user by req.user._id
 export const getUserProfile = asyncHandler( async(req, res) => {
   const user = await User.findById(req.user._id)
 

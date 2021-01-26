@@ -2,6 +2,7 @@ import express from 'express'
 
 import { getProducts, getProductById } from '../controllers/productController.js'
 
+// see product routes
 const router = express.Router()
 
 router.route('/').get(getProducts) 

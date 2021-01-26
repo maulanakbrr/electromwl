@@ -4,6 +4,12 @@ import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 
+// create protect function
+// read req.headers.authorization and check
+// req.headers.authorization starts with 'Bearer'
+// if its true, get token by split the req.headers.authorization
+// verify the token and save on decoded var
+// get req.user datas by find user by id excepet password
 export const protect = asyncHandler(async (req, res, next) => {
   let token
 
@@ -23,6 +29,8 @@ export const protect = asyncHandler(async (req, res, next) => {
     }
   }
 
+  // if token doesn't exists
+  // throw error
   if(!token){
     res.status(401)
     throw new Error('Not authorized, no token')

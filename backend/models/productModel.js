@@ -1,5 +1,8 @@
 import mongoose from 'mongoose'
 
+// create review schema
+// and product schema and model
+
 const reviewSchema = mongoose.Schema({
   name: {
     type: String,
