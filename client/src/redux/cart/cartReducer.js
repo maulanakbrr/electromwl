@@ -2,7 +2,9 @@ import CartActionTypes from './cartTypes'
 import { addItemToCart, removeItemFromCart } from './cartUtils'
 
 const INITIAL_STATE = {
-  cartItems: []
+  cartItems: [],
+  shippingAddress: {},
+  paymentMethod: ''
 }
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -17,6 +19,16 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload)
+      }
+    case CartActionTypes.CART_SAVE_SHIPPING_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: action.payload
+      }
+    case CartActionTypes.CART_SAVE_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymentMethod: action.payload
       }
     default:
       return state

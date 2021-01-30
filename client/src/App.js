@@ -10,7 +10,10 @@ import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage'
 import CartPage from './pages/CartPage/CartPage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
-import ProfilePage from './pages/ProfilePage/ProfilePage'
+import ProfilePage from './pages/ProfilePage/ProfilePage' 
+import ShippingPage from './pages/ShippingPage/ShippingPage'
+import PaymentPage from './pages/PaymentPage/PaymentPage'
+import PlaceOrderPage from './pages/PlaceOrderPage/PlaceOrderPage'
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
               <Route path='/login' component={LoginPage}/>
               <Route path='/register' component={RegisterPage}/>
               <Route path='/profile' component={ProfilePage}/>
+              <Route path='/shipping' component={ShippingPage}/>
+              <Route path='/payment' component={PaymentPage}/>
+              <Route path='/placeorder' component={PlaceOrderPage}/>
             </Switch>
           </Container>
         </main>

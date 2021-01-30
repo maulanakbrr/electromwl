@@ -48,8 +48,7 @@ const ProfilePage = ({history, location}) => {
       }, currentUser))
     }
   }
-
-  console.log(name, email)
+  
   return (
     <Row>
       <Col md={3}>

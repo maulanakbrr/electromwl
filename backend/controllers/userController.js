@@ -82,7 +82,6 @@ export const updateUserProfile = asyncHandler( async(req, res) => {
   const user = await User.findById(req.user._id)
   
   const { name, email } = req.body
-  console.log(name, email)
 
   if (user){
     user.name = req.body.name || user.name
@@ -92,8 +91,6 @@ export const updateUserProfile = asyncHandler( async(req, res) => {
     }
 
     const updatedUser = await user.save()
-
-    console.log(updatedUser)
 
     res.json({
       _id: updatedUser._id,

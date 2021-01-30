@@ -11,6 +11,16 @@ export const cartRemoveItem = itemId => ({
   payload: itemId
 })
 
+export const saveShippingAddress = data => ({
+  type: CartActionTypes.CART_SAVE_SHIPPING_ADDRESS,
+  payload: data
+})
+
+export const savePaymentMethod = data => ({
+  type: CartActionTypes.CART_SAVE_PAYMENT_METHOD,
+  payload: data
+})
+
 export const addToCart = (id, qty) => async (dispatch) => {
   const { data } = await axios(`/api/products/${id}`)
 
