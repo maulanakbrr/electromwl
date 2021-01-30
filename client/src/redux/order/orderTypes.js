@@ -1,0 +1,7 @@
+const OrderActionsTypes = {
+  ORDER_CREATE_START: 'ORDER_CREATE_START',
+  ORDER_CREATE_SUCCESS: 'ORDER_CREATE_SUCCESS',
+  ORDER_CREATE_FAIL: 'ORDER_CREATE_FAIL'
+}
+
+export default OrderActionsTypes

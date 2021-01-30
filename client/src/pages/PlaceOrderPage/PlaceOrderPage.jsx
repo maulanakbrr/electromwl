@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { savePaymentMethod } from '../../redux/cart/cartActions'
+import { createOrderAsync } from '../../redux/order/orderActions'
 
 import Message from '../../components/Message/Message'
+import Loader from '../../components/Loader/Loader'
 import CheckoutPanel from '../../components/CheckoutPanel/CheckoutPanel'
 
-const PlaceOrderPage = () => {
+const PlaceOrderPage = ({history}) => {
   const dispatch = useDispatch()
 
   const addDecimals = num => {
@@ -16,6 +17,9 @@ const PlaceOrderPage = () => {
   }
   
   const cart = useSelector(state => state.cart)
+
+  const user = useSelector(state => state.user)
+  const { currentUser } = user
 
   cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0))
 
@@ -25,8 +29,26 @@ const PlaceOrderPage = () => {
 
   cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)).toFixed(2)
 
+  const orderCreate = useSelector(state => state.orderCreate)
+  const { isFetching, order, success, errorMessage } = orderCreate
+
+  useEffect(() => {
+    if(success) {
+      history.push(`/order/${order._id}`)
+    }
+    // eslint-disable-next-line
+  }, [history, success])
+
   const placeOrderHandler = () => {
-    console.log('finished!')
+    dispatch(createOrderAsync({
+      orderItems: cart.cartItems,
+      shippingAddress: cart.shippingAddress,
+      paymentMethod: cart.paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice
+    }, currentUser))
   }
   
   return (
@@ -124,12 +146,22 @@ const PlaceOrderPage = () => {
               </ListGroup.Item>
 
               <ListGroup.Item>
+                { errorMessage && <Message variant='danger'>{errorMessage}</Message>}
+              </ListGroup.Item>
+
+              <ListGroup.Item>
                 <Button 
                   type='button' 
                   className='btn-block' 
                   disabled={ cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
                 >Place Order</Button>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                {
+                  isFetching && <Loader/>
+                }
               </ListGroup.Item>
 
             </ListGroup>

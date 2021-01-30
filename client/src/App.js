@@ -32,6 +32,7 @@ function App() {
               <Route path='/shipping' component={ShippingPage}/>
               <Route path='/payment' component={PaymentPage}/>
               <Route path='/placeorder' component={PlaceOrderPage}/>
+              <Route path='/order/:id' component={<h1>order is here</h1>}/>
             </Switch>
           </Container>
         </main>

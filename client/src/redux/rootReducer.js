@@ -6,6 +6,7 @@ import productsReducer from './products/productsReducer'
 import productDetailsReducer from './productDetails/productDetailsReducer'
 import cartReducer from './cart/cartReducer'
 import userReducer from './user/userReducer'
+import orderReducer from './order/orderReducer'
 
 const persistConfig = {
   key: 'root',
@@ -16,14 +17,15 @@ const persistConfig = {
 const userPersistConfig = {
   key: 'user',
   storage: storage,
-  blacklist: ['errorMessage', 'isFetching']
+  blacklist: ['errorMessage', 'isFetching'],
 }
 
 const rootReducer = combineReducers({
   product: productsReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
-  user: persistReducer(userPersistConfig, userReducer)
+  user: persistReducer(userPersistConfig, userReducer),
+  orderCreate: orderReducer
 })
 
 export default persistReducer(persistConfig, rootReducer)

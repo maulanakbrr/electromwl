@@ -71,7 +71,7 @@ export const userLoginStartAsync = (email, password) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.post('api/users/login', { email, password }, config)
+    const { data } = await axios.post('/api/users/login', { email, password }, config)
 
     dispatch(userLoginSuccess(data))
   } catch (error) {
@@ -91,7 +91,7 @@ export const userRegisterStartAsync = (name, email, password) => async (dispatch
       },
     }
 
-    const { data } = await axios.post('api/users', { name, email, password }, config)
+    const { data } = await axios.post('/api/users', { name, email, password }, config)
 
     dispatch(userRegisterSuccess(data))
   } catch (error) {
@@ -114,7 +114,7 @@ export const getUserDetailsAsync = (id, currentUser) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.get(`api/users/${id}`, config)
+    const { data } = await axios.get(`/api/users/${id}`, config)
 
     dispatch(userDetailsSuccess(data))
   } catch (error) {
@@ -128,8 +128,6 @@ export const updateUserDetailsAsync = (user, currentUser) => async (dispatch) =>
   try {
     const { token } = currentUser
 
-    console.log(user)
-
     dispatch(userUpdateProfileStart())
 
     const config = {
@@ -139,7 +137,7 @@ export const updateUserDetailsAsync = (user, currentUser) => async (dispatch) =>
       },
     }
 
-    const { data } = await axios.put(`api/users/profile`, user,  config)
+    const { data } = await axios.put(`/api/users/profile`, user,  config)
 
     dispatch(userUpdateProfileSuccess(data))
   } catch (error) {
